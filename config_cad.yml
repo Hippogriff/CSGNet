@@ -1,0 +1,58 @@
+comment = "Write some meaningful comments that can be used in future to identify the intents of running this experiment."
+
+[train]
+model_path = cad_3_{}
+
+# Whether to load a pretrained model or not
+preload_model = True
+
+# path to the pre-trained model
+pretrain_model_path = "trained_models/mix_len_cr_percent_equal_batch_3_13_prop_100_hdsz_2048_batch_2000_optim_adam_lr_0.001_wd_0.0_enocoderdrop_0.0_drop_0.2_step_mix_mode_12.pth"
+
+# Proportion of the dataset to be used while supevised training (N/A for RL), use 100
+proportion = 100
+
+# Number of epochs to run during training
+num_epochs = 400
+
+# batch size, based on the GPU memory
+batch_size = 300
+
+# hidden size of RNN
+hidden_size = 2048
+
+# Output feature size from CNN
+input_size = 2048
+
+# Number of batches to be collected before the network update
+num_traj = 10
+
+# Canvas shape, keep it 64
+canvas_shape = 64
+
+# Learning rate
+lr = 0.01
+
+# Optimizer: RL training: "sgd" or supervised training: "adam"
+optim = sgd
+
+# Epsilon for the RL training, not applicable in Supervised training
+epsilon = 1
+
+# l2 Weight decay
+weight_decay = 0.0
+
+# dropout for Decoder network
+dropout = 0.2
+
+# Encoder dropout
+encoder_drop = 0.2
+
+# Whether to schedule the learning rate or not
+lr_sch = True
+
+# Number of epochs to wait before decaying the learning rate.
+patience = 8
+
+# Mode of training, 1: supervised, 2: RL
+mode = 2
