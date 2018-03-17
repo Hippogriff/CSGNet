@@ -11,7 +11,7 @@ import sys
 
 import numpy as np
 
-import read_config
+from src.utils import read_config
 from src.utils.generators.shapenet_generater import Generator
 from src.utils.refine import optimize_expression
 from src.utils.reinforce import Reinforce

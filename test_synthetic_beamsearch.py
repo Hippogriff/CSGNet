@@ -3,14 +3,16 @@ Contains code to start the visualization process.
 """
 import json
 import os
+import sys
+
 import numpy as np
 import torch
-import sys
 from torch.autograd.variable import Variable
-import read_config
+
 from src.Models.models import Encoder
 from src.Models.models import ImitateJoint, validity
 from src.Models.models import ParseModelOutput
+from src.utils import read_config
 from src.utils.generators.mixed_len_generator import MixedGenerateData
 from src.utils.train_utils import prepare_input_op, chamfer, beams_parser
 

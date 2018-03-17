@@ -20,11 +20,11 @@ import torch
 import torch.optim as optim
 from tensorboard_logger import configure, log_value
 from torch.autograd.variable import Variable
-import os
-import read_config
+
 from src.Models.loss import losses_joint
 from src.Models.models import Encoder
 from src.Models.models import ImitateJoint, ParseModelOutput
+from src.utils import read_config
 from src.utils.generators.mixed_len_generator import MixedGenerateData
 from src.utils.learn_utils import LearningRate
 from src.utils.train_utils import prepare_input_op, cosine_similarity, chamfer

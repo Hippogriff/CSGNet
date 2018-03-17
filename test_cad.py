@@ -7,7 +7,7 @@ import numpy as np
 import torch
 from torch.autograd.variable import Variable
 import sys
-import read_config
+from src.utils import read_config
 from src.Models.models import ImitateJoint
 from src.Models.models import Encoder
 from src.utils.generators.shapenet_generater import Generator

@@ -10,7 +10,7 @@ import json
 import numpy as np
 import torch
 from src.Models.models import ParseModelOutput
-import read_config
+from src.utils import read_config
 import sys
 from src.Models.models import ImitateJoint
 from src.Models.models import Encoder
