@@ -1,0 +1,97 @@
+
+---
+# ^ DON'T REMOVE the "---" above!
+# ==============================================================================
+#                                 WEBSITE HEADER                                
+# ==============================================================================
+# These variables are shown in the website header.
+# ------------------------------------------------------------------------------
+website_title:   'CSGNet'
+#website_tagline: 'CSGNet: Neural Shape Parser for Constructive Solid Geometry'
+# ==============================================================================
+#                                  GITHUB LINKS                                 
+# ==============================================================================
+# The following variables are used for automagically creating links to your repo
+# on GitHub, and for the .zip and .tar download links.
+# Substitute sample values with your username and repository name as they appear
+# on GitHub (CASE SENSITIVE!!!)
+# ------------------------------------------------------------------------------
+# Example: https://github.com/jasonlong/cayman-theme
+your_github_username: hippogriff
+your_github_reponame: CSGNet
+
+# ==============================================================================
+#                                   HTML META                                   
+# ==============================================================================
+# HTML Metadata -- for <head> section
+# If you don't need a variable, delete its line or comment it out with a `#`!
+# ------------------------------------------------------------------------------
+title: 'Cayman Theme — As shown in browser tab and bookmarks'
+lang:   en
+date:   December 12, 2016
+author:
+  - Jason Long
+  - Collaborator Two Name
+  - Another Collaborator
+description: 'CSGNet: Neural Shape Parser for Constructive Solid Geometry'
+keywords:
+  - CSGNet
+  - RL
+  - Shape Parsing
+  - Program Induction
+  - Inverse Graphics
+# ==============================================================================
+#                             EXTRA CSS STYLESHEETS                             
+# ==============================================================================
+# An optional list of extra CSS stylesheets to include from the "/stylesheets/"
+# theme's subfolder. Just place your custom stylesheets in that folder and add 
+# their filenames to this list.
+# DON'T USE ABSOLUTE URLs (ie: "https://" or "http://")!!! If you do it, the
+# template will break badly. For includind CSS files with absolute URLs, use the 
+# "header-includes:" scalar instead (see below).
+# ------------------------------------------------------------------------------
+css:
+  - your_custom.css
+  - another_stylesheet.css
+# ==============================================================================
+#                        CUSTOM HTML TO INJECT IN HEADER                        
+# ==============================================================================
+# This optional indented block literal scalar can be used to inject (verbatim)
+# raw html at the end of the head section, just before the closing </head> tag.
+# This can be used to include CSS with absolute URLs, or JavaScript files -- or
+# anything you want, without actually editing the template file.
+# ------------------------------------------------------------------------------
+header-includes: |
+  <!-- anything you put here will go verbatim in the header section
+       Useful for adding javascripts, custom metadata, and so on... -->
+# ******************************************************************************
+# *                             INSERT BEFORE BODY                             *
+# ******************************************************************************
+# You can inject some extra contents after the opening <body> tag and before the
+# contents of your 'README.md' file. It will be parsed as markdown and converted
+# to html by pandoc. Use raw html if you need advanced features, but remember
+# that all loose text will be enclosed in <p> tags -- wrap it inside a <div> if
+# you don't want it parsed as markdown!
+# ------------------------------------------------------------------------------
+include-before: |
+    <!-- anything you put here will go before the opening <body> tag
+         (ie: before the README’s contents) Markdown will become HTML  -->
+# ******************************************************************************
+# *                             INSERT AFTER BODY                              *
+# ******************************************************************************
+# You can also inject extra contents after those of your 'README.md' file and
+# before the closing </body> tag. Same rules as for 'include-before' variable.
+# ------------------------------------------------------------------------------
+# include-after: |
+#     <!-- anything you put here will go before the closing </body> tag
+#          (ie: after the README’s contents) Markdown will become HTML  -->
+#     ---
+    # Injected Text
+    
+    # This paragraph, the preceding heading and horizontal ruler were defined in
+    # the `include-after` string variable inside the YAML configuration file.
+    # They were injected after the contents of the `README.md` file, and before
+    # the closing `</body>` tag.
+# ------------------------------------------------------------------------------
+# DON'T REMOVE the "..." below:
+...
