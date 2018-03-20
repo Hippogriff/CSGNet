@@ -26,13 +26,13 @@ your_github_reponame: CSGNet
 # HTML Metadata -- for <head> section
 # If you don't need a variable, delete its line or comment it out with a `#`!
 # ------------------------------------------------------------------------------
-title: 'Cayman Theme — As shown in browser tab and bookmarks'
+title: 'CSGNet'
 lang:   en
-date:   December 12, 2016
+date:   March 18, 2018
 author:
-  - Jason Long
-  - Collaborator Two Name
-  - Another Collaborator
+  - Gopal Sharma
+#  - Collaborator Two Name
+#  - Another Collaborator
 description: 'CSGNet: Neural Shape Parser for Constructive Solid Geometry'
 keywords:
   - CSGNet
@@ -61,9 +61,9 @@ css:
 # This can be used to include CSS with absolute URLs, or JavaScript files -- or
 # anything you want, without actually editing the template file.
 # ------------------------------------------------------------------------------
-header-includes: |
-  <!-- anything you put here will go verbatim in the header section
-       Useful for adding javascripts, custom metadata, and so on... -->
+#header-includes: |
+#  <!-- anything you put here will go verbatim in the header section
+#       Useful for adding javascripts, custom metadata, and so on... -->
 # ******************************************************************************
 # *                             INSERT BEFORE BODY                             *
 # ******************************************************************************
@@ -73,9 +73,9 @@ header-includes: |
 # that all loose text will be enclosed in <p> tags -- wrap it inside a <div> if
 # you don't want it parsed as markdown!
 # ------------------------------------------------------------------------------
-include-before: |
-    <!-- anything you put here will go before the opening <body> tag
-         (ie: before the README’s contents) Markdown will become HTML  -->
+#include-before: |
+#    <!-- anything you put here will go before the opening <body> tag
+#         (ie: before the README’s contents) Markdown will become HTML  -->
 # ******************************************************************************
 # *                             INSERT AFTER BODY                              *
 # ******************************************************************************
