@@ -6,19 +6,26 @@ Here we only include the code for 2D CSGNet. Code for 3D is very similar to 2D a
 ![](image.png)
 ### Dependency
 - Python 3.*
-- Pytorch 0.1.2 or Pytorch 0.3
+- Please use conda env using environment.yml file.
+  ```bash
+  conda env create -f environment.yml -n CSGNet
+  source activate CSGNet
+  ```
 
 ### Data
 - Synthetic Dataset:
 
-    Dataset is provided in the form of program expressions, instead of rendered images. Images for training, validation and testing are rendered on the fly. The dataset is split in different program lengths.
+    Download the synthetic [dataset](https://www.dropbox.com/s/ud3oe7twjc8l4x3/synthetic.tar.gz?dl=0) and CAD [Dataset](https://www.dropbox.com/s/d6vm7diqfp65kyi/cad.h5?dl=0). Synthetic dataset is provided in the form of program expressions, instead of rendered images. Images for training, validation and testing are rendered on the fly. The dataset is split in different program lengths.
     ```bash
     tar -zxvf data/synthetic.tar.gz -C data/
     ```
 
 - CAD Dataset
 
-    Dataset is provided in H5Py format. Do this before using in the directory `data/cad/cad.h5`.
+    Dataset is provided in H5Py format.
+    ```bash
+    mv cad.h5 data/cad/
+    ```
 
 ### Supervised Learning
 - To train, update `config_synthetic.yml` with required arguments. Default arguments are already filled. Then run:
