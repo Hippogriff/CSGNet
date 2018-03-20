@@ -40,8 +40,6 @@ dataset_sizes = {
 
 generator = MixedGenerateData(data_labels_paths=data_labels_paths,
                               batch_size=config.batch_size,
-                              train_size=config.train_size,
-                              test_size=config.test_size,
                               canvas_shape=config.canvas_shape)
 
 imitate_net = ImitateJoint(hd_sz=config.hidden_size,
@@ -119,7 +117,7 @@ for jit in [True, False]:
 
             programs_tar[jit] += targ_prog
             programs_pred[jit] += pred_prog
-            distance = chamfer(target_images, pred_images) * 64 * 0.5 / 2
+            distance = chamfer(target_images, pred_images)
             total_CD += np.sum(distance)
 
     over_all_CD[jit] = total_CD / total_size
@@ -137,5 +135,5 @@ with open("trained_models/results/{}/{}".format(model_name, "pred_prog.org"), 'w
 with open("trained_models/results/{}/{}".format(model_name, "tar_prog.org"), 'w') as outfile:
     json.dump(programs_tar, outfile)
 
-with open("trained_models/results/{}/{}".format(model_name, "all_metrices.org"), 'w') as outfile:
+with open("trained_models/results/{}/{}".format(model_name, "top1_metrices.org"), 'w') as outfile:
     json.dump(metrics, outfile)
