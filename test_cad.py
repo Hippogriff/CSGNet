@@ -22,9 +22,6 @@ if len(sys.argv) > 1:
 else:
     config = read_config.Config("config_synthetic.yml")
 
-encoder_net = Encoder()
-encoder_net.cuda()
-
 # CNN encoder
 encoder_net = Encoder(config.encoder_drop)
 encoder_net.cuda()
