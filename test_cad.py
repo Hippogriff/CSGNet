@@ -90,11 +90,11 @@ for p in paths:
         one_hot_labels = prepare_input_op(labels, len(unique_draw))
         one_hot_labels = Variable(torch.from_numpy(one_hot_labels)).cuda()
         data = Variable(torch.from_numpy(data_), volatile=True).cuda()
-        outputs, samples, baselines = imitate_net([data, one_hot_labels, max_len])
+        outputs, samples = imitate_net([data, one_hot_labels, max_len])
         R, _, pred_images, expressions = reinforce.generate_rewards(
             samples,
-            labels,
             data_,
+            time_steps=max_len,
             stack_size=max_len // 2 + 1,
             power=1,
             reward="iou")
