@@ -1,5 +1,4 @@
 import matplotlib
-matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import os
 import json
@@ -20,7 +19,7 @@ reward = "chamfer"
 if len(sys.argv) > 1:
     config = read_config.Config(sys.argv[1])
 else:
-    config = read_config.Config("config_synthetic.yml")
+    config = read_config.Config("config_cad.yml")
 
 # CNN encoder
 encoder_net = Encoder(config.encoder_drop)
