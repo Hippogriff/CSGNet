@@ -84,7 +84,7 @@ class Reinforce:
             distance = chamfer(target_images, pred_images)
             # normalize the distance by the diagonal of the image
             R = (1.0 - distance / image_size / (2**0.5))
-            R = np.clip(R, a_min=0.0)
+            R = np.clip(R, a_min=0.0, a_max=1.0)
             R[R > 1.0] = 0
             R = R**power
 

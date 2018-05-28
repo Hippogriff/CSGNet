@@ -96,12 +96,12 @@ for p in paths:
         data = Variable(torch.from_numpy(data_), volatile=True).cuda()
         outputs, samples, baselines = imitate_net([data, one_hot_labels, max_len])
         R, _, pred_images, expressions = reinforce.generate_rewards(
-            samples,
-            labels,
-            data_,
-            stack_size=max_len // 2 + 1,
-            power=1,
-            reward="iou")
+                                                                    samples,
+                                                                    data_,
+                                                                    time_steps=max_len,
+                                                                    stack_size=max_len // 2 + 1,
+                                                                    power=1,
+                                                                    reward="iou")
         RS_iou += np.mean(R) / (test_size // config.batch_size)
 
         R, _, _, expressions, distance = reinforce.generate_rewards(samples,

@@ -170,6 +170,7 @@ for p in paths:
         "average chamfer distance: {}".format(
             CDs / (config.test_size // config.batch_size)),
         flush=True)
+
     if REFINE:
         Target_images = np.concatenate(Target_images, 0)
         tweaked_expressions = []

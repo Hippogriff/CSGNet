@@ -192,7 +192,6 @@ class ImitateJoint(nn.Module):
                 arr = arr.detach()
                 temp_input_op = arr
             return [outputs, samples]
-
         else:
             assert False, "Incorrect mode!!"
 

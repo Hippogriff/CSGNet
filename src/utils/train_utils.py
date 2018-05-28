@@ -9,7 +9,9 @@ from sklearn.preprocessing import normalize
 from ..Models.models import validity
 import cv2
 from typing import List
-
+import copy
+from matplotlib import pyplot as plt
+from typing import List
 
 def pytorch_data(_generator, if_volatile=False):
     """Converts numpy tensor input data to pytorch tensors"""
@@ -258,3 +260,63 @@ def beams_parser(all_beams, batch_size, beam_width=5):
             all_expression[batch].append(np.array(temp))
         all_expression[batch] = np.squeeze(np.array(all_expression[batch]))
     return all_expression
+
+
+def valid_permutations(prog, permutations=[], stack=[], start=False):
+    """
+    Takes the prog, and returns valid permutation such that the final output
+    shape remains same. Mainly permuate the operands in union and intersection
+    open"""
+    for index, p in enumerate(prog):
+        if p["type"] == "draw":
+            stack.append(p["value"])
+
+        elif p["type"] == "op" and (p["value"] == "+" or p["value"] == "*"):
+            second = stack.pop()
+            first = stack.pop()
+
+            first_stack = copy.deepcopy(stack)
+            first_stack.append(first + second + p["value"])
+
+            second_stack = copy.deepcopy(stack)
+            second_stack.append(second + first + p["value"])
+
+            program1 = valid_permutations(prog[index + 1:], permutations, first_stack, start=False)
+            program2 = valid_permutations(prog[index + 1:], permutations, second_stack, start=False)
+            permutations.append(program1)
+            permutations.append(program2)
+
+            stack.append(first + second + p["value"])
+
+        elif p["type"] == "op" and p["value"] == "-":
+            second = stack.pop()
+            first = stack.pop()
+            stack.append(first + second + p["value"])
+            if index == len(prog) - 1:
+                permutations.append(copy.deepcopy(stack[0]))
+    if start:
+        return list(permutations)
+    else:
+        return stack[0]
+
+
+def plotall(images: List, cmap="Greys_r"):
+    """
+    Awesome function to plot figures in list of list fashion.
+    Every list inside the list, is assumed to be drawn in one row.
+    :param images: List of list containing images
+    :param cmap: color map to be used for all images
+    :return: List of figures.
+    """
+    figures = []
+    num_rows = len(images)
+    for r in range(num_rows):
+        cols = len(images[r])
+        f, a = plt.subplots(1, cols)
+        for c in range(cols):
+            a[c].imshow(images[r][c], cmap=cmap)
+            a[c].title.set_text("{}".format(c))
+            a[c].axis("off")
+            a[c].grid("off")
+        figures.append(f)
+    return figures
