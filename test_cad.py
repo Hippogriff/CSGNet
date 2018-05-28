@@ -1,5 +1,4 @@
 import matplotlib
-matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import os
 import json
@@ -20,10 +19,7 @@ reward = "chamfer"
 if len(sys.argv) > 1:
     config = read_config.Config(sys.argv[1])
 else:
-    config = read_config.Config("config_synthetic.yml")
-
-encoder_net = Encoder()
-encoder_net.cuda()
+    config = read_config.Config("config_cad.yml")
 
 # CNN encoder
 encoder_net = Encoder(config.encoder_drop)
@@ -94,7 +90,7 @@ for p in paths:
         one_hot_labels = prepare_input_op(labels, len(unique_draw))
         one_hot_labels = Variable(torch.from_numpy(one_hot_labels)).cuda()
         data = Variable(torch.from_numpy(data_), volatile=True).cuda()
-        outputs, samples, baselines = imitate_net([data, one_hot_labels, max_len])
+        outputs, samples = imitate_net([data, one_hot_labels, max_len])
         R, _, pred_images, expressions = reinforce.generate_rewards(
                                                                     samples,
                                                                     data_,
