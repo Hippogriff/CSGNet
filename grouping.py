@@ -3,7 +3,6 @@ from src.utils import read_config
 from src.utils import train_utils
 from src.Models.models import ParseModelOutput
 
-
 max_len = 13
 config = read_config.Config("config_synthetic.yml")
 valid_permutations = train_utils.valid_permutations
@@ -43,16 +42,24 @@ class EditDistance:
 
         all_valid_programs1 = list(set(valid_permutations(prog1_tokens, permutations=[], stack=[], start=True)))
         all_valid_programs2 = list(set(valid_permutations(prog2_tokens, permutations=[], stack=[], start=True)))
-
         if iou == 1:
             return 0
 
-        if prog1 in prog2:
-            return len(prog2_tokens) - len(prog1_tokens)
+        # if prog1 in prog2:
+        #     return len(prog2_tokens) - len(prog1_tokens)
+        #
+        # elif prog2 in prog1:
+        #     return len(prog1_tokens) - len(prog2_tokens)
+        # else:
+        #     return 100
 
-        subsets1 = self.exhaustive_subsets_edit_distance(all_valid_programs1, all_valid_programs2)
-        subsets2 = self.exhaustive_subsets_edit_distance(all_valid_programs2, all_valid_programs1)
-        return np.min([np.min(subsets1), np.min(subsets2)])
+        if len(prog1_tokens) <= len(prog2_tokens):
+            subsets1 = self.exhaustive_subsets_edit_distance(all_valid_programs1, all_valid_programs2)
+            return np.min(subsets1)
+        else:
+            subsets2 = self.exhaustive_subsets_edit_distance(all_valid_programs2, all_valid_programs1)
+            return np.min(subsets2)
+        # return np.min([np.min(subsets1), np.min(subsets2)])
 
     def exhaustive_subsets_edit_distance(self, progs1, progs2):
         len_1 = len(progs1)

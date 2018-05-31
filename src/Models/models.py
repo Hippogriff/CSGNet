@@ -279,7 +279,7 @@ class ImitateJoint(nn.Module):
                 dense_output = self.dense_output(self.drop(hd))
                 output = self.logsoftmax(dense_output)
                 # Element wise multiply by previous probabs
-                output = torch.nn.Softmax()(output)
+                output = torch.nn.Softmax(1)(output)
 
                 output = output * prev_output_prob[b]
                 outputs.append(output)

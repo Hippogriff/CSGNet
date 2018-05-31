@@ -98,7 +98,7 @@ class Grouping:
         pass
 
     def group(self, image):
-        bbs = self.tightbuondingbox(image)
+        bbs = self.tightboundingbox(image)
         num_objects = len(bbs)
         similarity_matrix = np.zeros((num_objects, num_objects))
         objects = self.find_unique(image, bbs)
@@ -106,12 +106,12 @@ class Grouping:
             for j in range(i + 1, num_objects):
                 _, _, w1, h1 = bbs[i]
                 _, _, w2, h2 = bbs[j]
-                if w1 == w2 and h1 == h2:
-                    ob1 = objects[i]
-                    ob2 = objects[j]
-                    iou = np.sum(np.logical_and(ob1, ob2)) / np.sum(np.logical_or(ob1, ob2))
-                    if iou == 1:
-                        similarity_matrix[i, j] = True
+                # if w1 == w2 and h1 == h2:
+                #     ob1 = objects[i]
+                #     ob2 = objects[j]
+                #     iou = np.sum(np.logical_and(ob1, ob2)) / np.sum(np.logical_or(ob1, ob2))
+                #     if iou == 1:
+                #         similarity_matrix[i, j] = True
         return similarity_matrix, bbs, objects
 
     def similarity_to_cluster(self, similarity):
@@ -150,7 +150,26 @@ class Grouping:
         x, y, w, h = bb
         return image[x:x + h, y:y + w]
 
-    def tightbuondingbox(self, image):
+    def nms(self, bbs):
+        """
+        No maximal suppressions
+        :param bbs: list containing bounding boxes
+        :return: pruned list containing bounding boxes
+        """
+        for index1, b1 in enumerate(bbs):
+            for index2, b2 in enumerate(bbs):
+                if index1 == index2:
+                    continue
+                if self.inside(b1, b2):
+                    _, _, w1, h1 = b1
+                    _, _, w2, h2 = b2
+                    if w1 * h1 >= w2 * h2:
+                        del bbs[index2]
+                    else:
+                        del bbs[index1]
+        return bbs
+
+    def tightboundingbox(self, image):
         ret, thresh = cv2.threshold(np.array(image, dtype=np.uint8), 0, 255, 0)
         im2, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         bb = []
@@ -161,7 +180,10 @@ class Grouping:
             h += 2
             x -= 1
             y -= 1
+            x = np.max([0, x])
+            y = np.max([0, y])
             bb.append([y, x, w, h])
+        bb = self.nms(bb)
         return bb
 
     def replace_in_small_canvas(self, img, canvas_shape:List):
@@ -171,6 +193,23 @@ class Grouping:
         diff_w = canvas_shape[1] - w
         canvas[diff_h // 2:diff_h // 2 + h, diff_w // 2:diff_w// 2 + w] = img
         return canvas
+
+    def inside(self, bb1, bb2):
+        """
+        check if the bounding box 1 is inside bounding box 2
+        """
+        x1, y1, w1, h1 = bb1
+        x, y, w, h = bb2
+        coor2 = [[x, y],
+                 [x + w, y],
+                 [x + w, y + w],
+                 [x, y + w]]
+        for x2, y2 in coor2:
+            cond1 = (x1 <= x2) and (x2 <= x1 + w1)
+            cond2 = (y1 <= y2) and (y2 <= y1 + h1)
+            if cond1 and cond2:
+                return True
+        return False
 
 
 def transform(rot, trans, mean, image):
