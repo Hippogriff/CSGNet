@@ -221,6 +221,7 @@ for epoch in range(config.epochs):
                                       mean_train_loss.cpu().numpy(), test_loss,
                                       1, 1))
     del test_losses
+    
     # Save when test reward is increased
     if total_reward > prev_test_reward:
         logger.info("Saving the Model weights")
