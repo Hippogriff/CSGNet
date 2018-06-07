@@ -86,8 +86,6 @@ for param in encoder_net.parameters():
     param.requires_grad = True
 
 max_len = max(data_labels_paths.keys())
-parser = ParseModelOutput(generator.unique_draw, max_len // 2 + 1, max_len,
-                          config.canvas_shape)
 
 optimizer = optim.Adam(
     [para for para in imitate_net.parameters() if para.requires_grad],
@@ -168,6 +166,8 @@ for epoch in range(config.epochs):
     COS = 0
     CD = 0
     for batch_idx in range(config.test_size // (config.batch_size)):
+        parser = ParseModelOutput(generator.unique_draw, max_len // 2 + 1, max_len,
+                          config.canvas_shape)
         for k in data_labels_paths.keys():
             data_, labels = next(test_gen_objs[k])
             one_hot_labels = prepare_input_op(labels, len(
