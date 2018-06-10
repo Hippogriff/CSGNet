@@ -1,7 +1,7 @@
 # CSGNet: Neural Shape Parser for Constructive Solid Geometry
 This repository contains code accompaning the paper: [CSGNet: Neural Shape Parser for Constructive Solid Geometry, CVPR 2018](https://arxiv.org/abs/1712.08290).
 
-Here we only include the code for 2D CSGNet. Code for 3D is very similar to 2D and is coming soon.
+Here we only include the code for 2D CSGNet. Code for 3D is available on this [repository](https://github.com/Hippogriff/3DCSGNet).
 
 ![](docs/image.png)
 ### Dependency
