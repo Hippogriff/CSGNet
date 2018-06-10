@@ -75,5 +75,16 @@ Here we only include the code for 2D CSGNet. Code for 3D is available on this [r
   Note that the expression files here should only have 3k x beam_width expressions corresponding to the 3k test examples from the CAD dataset.
 
 
+### Cite:
+```bibtex
+@InProceedings{Sharma_2018_CVPR,
+author = {Sharma, Gopal and Goyal, Rishabh and Liu, Difan and Kalogerakis, Evangelos and Maji, Subhransu},
+title = {CSGNet: Neural Shape Parser for Constructive Solid Geometry},
+booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+month = {June},
+year = {2018}
+}
+```
+
 ### Contact
 To ask questions, please [email](mailto:gopalsharma@cs.umass.edu).
