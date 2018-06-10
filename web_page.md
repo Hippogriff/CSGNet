@@ -1,5 +1,5 @@
 # CSGNet: Neural Shape Parser for Constructive Solid Geometry
-[Gopal Sharma](https://spamty.eu/mail/v4/758/WcSwM25u8506623258/), Rishabh Goyal, Difan Liu, [Evangelos Kalogerakis](https://github.com/Hippogriff/3DCSGNet), [Subhransu Maji](https://github.com/Hippogriff/3DCSGNet)
+[Gopal Sharma](https://spamty.eu/mail/v4/758/WcSwM25u8506623258/), Rishabh Goyal, Difan Liu, [Evangelos Kalogerakis](https://people.cs.umass.edu/~kalo/), [Subhransu Maji](https://people.cs.umass.edu/~smaji/)
 
 ***
 
