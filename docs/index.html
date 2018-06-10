@@ -30,11 +30,67 @@
     <section class="main-content">
  
 <h1 id="csgnet-neural-shape-parser-for-constructive-solid-geometry">CSGNet: Neural Shape Parser for Constructive Solid Geometry</h1>
-<p><a href="https://spamty.eu/mail/v4/758/WcSwM25u8506623258/">Gopal Sharma</a>, Rishabh Goyal, Difan Liu, Evangelos Kalogerakis, Subhransu Maji</p>
-<hr />
-<p><img src="image.png" /></p>
-<p><em>We present a neural architecture that takes as input a 2D or 3D shape and induces a program to generate it. The instructions in our program are based on constructive solid geometry principles, i.e., a set of boolean operations on shape primitives defined recursively. Bottom-up techniques for this task that rely on primitive detection are inherently slow since the search space over possible primitive combinations is large. In contrast, our model uses a recurrent neural network conditioned on the input shape to produce a sequence of instructions in a top-down manner and is significantly faster. It is also more effective as a shape detector than existing state-of-the-art detection techniques. We also demonstrate that our network can be trained on novel dataset without ground-truth program annotations through policy gradient techniques.</em></p>
-<p><a href="https://arxiv.org/abs/1712.08290">Paper</a> <a href="https://github.com/Hippogriff/CSGNet">Code</a></p>
+<p>This repository contains code accompaning the paper: <a href="https://arxiv.org/abs/1712.08290">CSGNet: Neural Shape Parser for Constructive Solid Geometry, CVPR 2018</a>.</p>
+<p>Here we only include the code for 2D CSGNet. Code for 3D is available on this <a href="https://github.com/Hippogriff/3DCSGNet">repository</a>.</p>
+<p><img src="docs/image.png" /></p>
+<h3 id="dependency">Dependency</h3>
+<ul>
+<li>
+Python 3.*
+</li>
+<li>
+<p>Please use conda env using environment.yml file.</p>
+<pre class="bash"><code>conda env create -f environment.yml -n CSGNet
+source activate CSGNet</code></pre>
+</li>
+</ul>
+<h3 id="data">Data</h3>
+<ul>
+<li>
+<p>Synthetic Dataset:</p>
+<p>Download the synthetic <a href="https://www.dropbox.com/s/ud3oe7twjc8l4x3/synthetic.tar.gz?dl=0">dataset</a> and CAD <a href="https://www.dropbox.com/s/d6vm7diqfp65kyi/cad.h5?dl=0">Dataset</a>. Synthetic dataset is provided in the form of program expressions, instead of rendered images. Images for training, validation and testing are rendered on the fly. The dataset is split in different program lengths. <code>bash   tar -zxvf synthetic.tar.gz -C data/</code></p>
+</li>
+<li>
+<p>CAD Dataset</p>
+<p>Dataset is provided in H5Py format. <code>bash   mv cad.h5 data/cad/</code></p>
+</li>
+</ul>
+<h3 id="supervised-learning">Supervised Learning</h3>
+<ul>
+<li>
+<p>To train, update <code>config_synthetic.yml</code> with required arguments. Default arguments are already filled. Then run: <code>python   python train_synthetic.py</code></p>
+</li>
+<li>
+<p>To test, update <code>config_synthetic.yml</code> with required arguments. Default arguments are already filled. Then run: <code>python   # For top-1 testing   python test_synthetic.py</code> <code>python   # For beam-search-k testing   python test_synthetic_beamsearch.py</code></p>
+</li>
+</ul>
+<h3 id="rl-fintuning">RL fintuning</h3>
+<ul>
+<li>
+<p>To train a network using RL, fill up configuration in <code>config_cad.yml</code> or keep the default values and then run: <code>python   python train_cad.py</code> Make sure that you have trained a network used Supervised setting first.</p>
+</li>
+<li>
+<p>To test the network trained using RL, fill up configuration in <code>config_cad.yml</code> or keep the default values and then run:</p>
+<pre class="python"><code># for top-1 decoding
+python test_cad.py</code></pre>
+<pre class="python"><code># beam search decoding
+python test_cad_beamsearch.py</code></pre>
+<p>For post processing optmization of program expressions (visually guided search), set the flag <code>REFINE=True</code> in the script <code>test_cad_beam_search.py</code>, although it is little slow. For saving visualization of beam search use <code>SAVE_VIZ=True</code></p>
+</li>
+<li>
+<p>To optmize some expressions for cad dataset:</p>
+<pre><code># To optmize program expressions from top-1 prediction
+python refine_cad.py path/to/exp/to/optmize/exp.txt  path/to/directory/to/save/exp/</code></pre>
+<p>Note that the expression files here should only have 3k expressions corresponding to the 3k test examples from the CAD dataset.</p>
+</li>
+<li>
+<p>To optmize program expressions from top-1 prediction</p>
+<pre><code>python refine_cad_beamsearch.py path/to/exp/to/optmize/exp.txt  path/to/directory/to/save/exp/</code></pre>
+<p>Note that the expression files here should only have 3k x beam_width expressions corresponding to the 3k test examples from the CAD dataset.</p>
+</li>
+</ul>
+<h3 id="contact">Contact</h3>
+<p>To ask questions, please <a href="mailto:gopalsharma@cs.umass.edu">email</a>.</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/jasonlong/cayman-theme">Cayman</a> is maintained by <a href="https://github.com/jasonlong">jasonlong</a>.</span>
