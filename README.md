@@ -15,7 +15,7 @@ Here we only include the code for 2D CSGNet. Code for 3D is available on this [r
 ### Data
 - Synthetic Dataset:
 
-    Download the synthetic [dataset](https://www.dropbox.com/s/ud3oe7twjc8l4x3/synthetic.tar.gz?dl=0) and CAD [Dataset](https://www.dropbox.com/s/d6vm7diqfp65kyi/cad.h5?dl=0). Synthetic dataset is provided in the form of program expressions, instead of rendered images. Images for training, validation and testing are rendered on the fly. The dataset is split in different program lengths.
+    Download the synthetic [dataset](https://www.dropbox.com/s/ud3oe7twjc8l4x3/synthetic.tar.gz?dl=0) and CAD [Dataset](https://www.dropbox.com/s/d6vm7diqfp65kyi/cad.h5?dl=0). Pre-trained model is available [here](https://www.dropbox.com/s/0f778edn3sjfabp/models.tar.gz?dl=0). Synthetic dataset is provided in the form of program expressions, instead of rendered images. Images for training, validation and testing are rendered on the fly. The dataset is split in different program lengths.
     ```bash
     tar -zxvf synthetic.tar.gz -C data/
     ```
