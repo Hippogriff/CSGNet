@@ -74,6 +74,8 @@ Here we only include the code for 2D CSGNet. Code for 3D is available on this [r
   ```
   Note that the expression files here should only have 3k x beam_width expressions corresponding to the 3k test examples from the CAD dataset.
 
+- To visualize generated expressions (programs), look at the script `visualize_expressions.py`
+
 
 ### Cite:
 ```bibtex
